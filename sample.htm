@@ -1,0 +1,1240 @@
+<html>
+<head>
+    <script type="text/javascript" src="file://F:\repo\OM\Client\branches\OMOutput\OMOutput\bin\Debug\Js\jquery_002.js"></script>
+    <style>
+        body
+        {
+            margin-top: 0px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-family: Segoe UI;
+            font-size: 10pt;
+            word-wrap: break-word;
+            white-space: pre;
+            white-space: pre-wrap;
+            white-space: pre-line;
+            background-color: #ffffff;
+        }
+        p
+        {
+            margin: 0px;
+            padding: 0px;
+            line-height: 20px;
+        }
+        #greybk
+        {
+            background-color: #f7f7f7;
+            clear: both;
+            width: 100%;
+            float: left;
+        }
+        #whitebk
+        {
+            background-color: #fcfcfc;
+            clear: both;
+            width: 100%;
+            float: left;
+        }
+        .showmore
+        {
+            color: #0078ca;
+            font-family: Segoe UI;
+            font-size: 12px;
+            cursor: pointer;
+            text-decoration: underline;
+            clear: both;
+            width: 70% float: left;
+        }
+        .nickname
+        {
+            clear: both;
+            color: #A1A1A1;
+            font-family: Segoe UI;
+            font-size: 14px;
+            float: left;
+            width: 70%;
+        }
+        .currentusernickname
+        {
+            clear: both;
+            color: #319aff;
+            font-family: Segoe UI;
+            font-size: 14px;
+            float: left;
+            width: 70%;
+        }
+        .msg_time, .msg_timeorange
+        {
+            padding: 2px 0p 0px 5px;
+            clear: right;
+            float: right;
+            font-family: Segoe UI;
+            font-size: 12px;
+            color: #A1A1A1;
+            width: 30%;
+            text-align: right;
+        }
+        
+        .msg_timeorange
+        {
+            color: #f98c01;
+        }
+        .msg_timeannounce
+        {
+            padding: 2px 0p 0px 5px;
+            clear: right;
+            float: right;
+            font-family: Segoe UI;
+            font-size: 12px;
+            color: #A1A1A1;
+            width: 20%;
+            text-align: right;
+        }
+        
+        .msg_body
+        {
+            color: #000000;
+            font-family: Segoe UI;
+            font-size: 10pt;
+            float: left;
+            word-wrap: break-word;
+            margin: 0px 0px 3px 3px;
+            padding: 0px 2px 2px 2px;
+        }
+        .msg_alertstatus_main
+        {
+            width: 70%;
+            float: left;
+            text-align: center; /*position:relative;*/
+        }
+        .msg_alertstatus
+        {
+            color: #555555;
+            font-family: Segoe UI;
+            font-size: 9pt; /*position:absolute;
+                top:50%;
+                left:20%;*/
+            text-align: center;
+            background-color: #FFFE5F;
+            padding: 2px 10px;
+            word-wrap: break-word;
+        }
+        .msg_request_main
+        {
+            background-color: #FFFFCE;
+            padding: 5px;
+            position: relative;
+            clear: both;
+            margin-top: 25px;
+            margin-left: 15px;
+            box-shadow: 10px 10px 5px #ded7de;
+            border-color: #cecfce;
+            border-style: solid;
+            width: 90%;
+            border-width: 1px 0px 0px 1px;
+        }
+        
+        .msg_leftgc
+        {
+            display: block;
+            white-space: nowrap;
+            overflow: visible;
+            color: #A1A1A1;
+            font-family: Segoe UI;
+            font-size: 11px;
+            float: right;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+        .msg_signout
+        {
+            color: #0072c6;
+            font-family: Segoe UI;
+            font-size: 12px;
+            float: right;
+            font-weight: bold;
+            padding-bottom: 5px;
+        }
+        .unreadmsg
+        {
+            float: right;
+            padding: 5px 6px 0px 0px;
+            width: 18px;
+        }
+        .datefont
+        {
+            font-size: 17px;
+            font-weight: bold;
+            color: #686667;
+            text-align: center;
+            word-wrap: break-word;
+        }
+        .monthfont
+        {
+            font-size: 12px;
+            font-weight: bold;
+            color: #686667;
+            text-align: left;
+            word-wrap: break-word;
+        }
+        .datebox
+        {
+            width: 38px;
+            clear: both;
+            background-color: #e0e0e0;
+            text-align: center;
+            text-color: #686667;
+            font-family: arial;
+            word-wrap: break-word;
+            float: right;
+        }
+        .dashedline
+        {
+            margin-top: 26px;
+            border-top: 1px dashed #d8d8d8;
+            background-color: #FFFFFF;
+            height: 1px;
+            width: 100%;
+        }
+        .highlighttext
+        {
+            background-color: lime;
+            font-weight: bold;
+            text-color: white;
+        }
+        .logfromnamea
+        {
+            padding-top: 4px;
+            vertical-align: middle;
+            color: #397dba;
+            font-family: Segoe UI;
+            font-size: 14px;
+            float: left;
+            width: 70%;
+            word-wrap: break-word;
+            margin: 0px 0px 3px 3px;
+            padding: 0px 2px 2px 2px;
+        }
+        .logfromname
+        {
+            padding-top: 4px;
+            vertical-align: middle;
+            color: #397dba;
+            font-family: Segoe UI;
+            font-size: 14px;
+            clear: both;
+            display: box;
+        }
+        .logdateorange
+        {
+            color: #ff9104;
+            font-family: Segoe UI;
+            font-size: 11px;
+            font-weight: italic;
+            float: left;
+            padding-top: 5px;
+            clear: both;
+            height: 25px;
+            width: 50%;
+        }
+        img.middle
+        {
+            vertical-align: middle;
+        }
+        img.bottom
+        {
+            vertical-align: bottom;
+        }
+        /*** Bullets ***/
+        .bullet
+        {
+            float: left;
+            position: fixed;
+            width: 5px;
+            height: 13pt;
+            margin: 0px 0px 0px 15px;
+            overflow: hidden;
+            clear: both;
+        }
+        .bullet img
+        {
+            vertical-align: middle;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+        }
+        .bullet img.non-delivered
+        {
+        }
+        .bullet img.server-delivered
+        {
+            margin-left: -6px;
+        }
+        .bullet img.delivered
+        {
+            margin-left: -12px;
+        }
+        .bullet img.read
+        {
+            margin-left: -18px;
+        }
+        .bullet img.unread
+        {
+            margin-left: -24px;
+        }
+        .bullet img.edit-non-delivered, .bullet img.edit-server-delivered
+        {
+            margin-left: -31px;
+        }
+        .bullet img.edit-delivered
+        {
+            margin-left: -41px;
+        }
+        .bullet img.edit
+        {
+            margin-left: -51px;
+        }
+        .bullet img.o_edit
+        {
+            margin-left: -61px;
+        }
+        .bullet img.delete
+        {
+            margin-left: -72px;
+        }
+        .bullet img.lock-non-delivered, .bullet img.lock-server-delivered
+        {
+            margin-left: -82px;
+        }
+        .bullet img.lock-delivered
+        {
+            margin-left: -92px;
+        }
+        .bullet img.lock
+        {
+            margin-left: -102px;
+        }
+        .bullet img.o_lock
+        {
+            margin-left: -112px;
+        }
+        
+        .edit_bullet
+        {
+            height: 12pt;
+            width: 9px;
+            margin-left: 12px;
+            margin-top: -1px;
+        }
+        .lock_bullet
+        {
+            height: 12px;
+            width: 12px;
+            margin-left: 12px;
+        }
+        .sep
+        {
+            padding: 0 0 0 0;
+            clear: both;
+        }
+        /*** End Bullets ***/
+        /*** Emotions ***/
+        .emotion
+        {
+            width: 16px;
+            height: 16px;
+            overflow: hidden;
+            position: relative;
+            display: inline;
+        }
+        .emotion img
+        {
+            position: absolute;
+            left: -5px;
+            top: -5px;
+        }
+        .e_whistle
+        {
+            width: 17px;
+            height: 17px;
+        }
+        .e_brb
+        {
+            width: 17px;
+            height: 17px;
+        }
+        .e_secret
+        {
+            width: 19px;
+            height: 19px;
+        }
+        /*First Row*/
+        .emotion img.smile
+        {
+        }
+        .emotion img.very_happy
+        {
+            margin-left: -25px;
+        }
+        .emotion img.baring_teeth
+        {
+            margin-left: -50px;
+        }
+        .emotion img.winking
+        {
+            margin-left: -75px;
+        }
+        .emotion img.shocked
+        {
+            margin-left: -100px;
+        }
+        .emotion img.omg
+        {
+            margin-left: -125px;
+        }
+        .emotion img.tonque_out
+        {
+            margin-left: -150px;
+        }
+        .emotion img.nerd
+        {
+            margin-left: -175px;
+        }
+        /*Second Row*/
+        .emotion img.angry
+        {
+            margin-top: -25px;
+        }
+        .emotion img.ashamed
+        {
+            margin-left: -25px;
+            margin-top: -25px;
+        }
+        .emotion img.i_dont_know
+        {
+            margin-left: -50px;
+            margin-top: -25px;
+        }
+        .emotion img.confused
+        {
+            margin-left: -75px;
+            margin-top: -25px;
+        }
+        .emotion img.crying
+        {
+            margin-left: -100px;
+            margin-top: -25px;
+        }
+        .emotion img.sad
+        {
+            margin-left: -125px;
+            margin-top: -25px;
+        }
+        .emotion img.dont_tell_anyone
+        {
+            margin-left: -150px;
+            margin-top: -25px;
+        }
+        .emotion img.bye
+        {
+            margin-left: -175px;
+            margin-top: -25px;
+        }
+        /*Third Row*/
+        .emotion img.thinking
+        {
+            margin-top: -51px;
+        }
+        .emotion img.sorry
+        {
+            margin-left: -25px;
+            margin-top: -51px;
+        }
+        .emotion img.sleepy
+        {
+            margin-left: -50px;
+            margin-top: -51px;
+        }
+        .emotion img.sick
+        {
+            margin-left: -75px;
+            margin-top: -51px;
+        }
+        .emotion img.cool
+        {
+            margin-left: -100px;
+            margin-top: -51px;
+        }
+        .emotion img.angel
+        {
+            margin-left: -125px;
+            margin-top: -51px;
+        }
+        .emotion img.devil
+        {
+            margin-left: -150px;
+            margin-top: -51px;
+        }
+        .emotion img.party
+        {
+            margin-left: -175px;
+            margin-top: -51px;
+        }
+        /*Forth Row*/
+        .emotion img.whistle
+        {
+            margin-top: -78px;
+        }
+        .emotion img.brb
+        {
+            margin-left: -25px;
+            margin-top: -78px;
+        }
+        .emotion img.secret
+        {
+            margin-left: -50px;
+            margin-top: -78px;
+        }
+        .emotion img.headache
+        {
+            margin-left: -75px;
+            margin-top: -78px;
+        }
+        .emotion img.gift
+        {
+            margin-left: -100px;
+            margin-top: -78px;
+        }
+        .emotion img.birthday_cake
+        {
+            margin-left: -125px;
+            margin-top: -78px;
+        }
+        .emotion img.heart
+        {
+            margin-left: -150px;
+            margin-top: -78px;
+        }
+        .emotion img.broken_heart
+        {
+            margin-left: -175px;
+            margin-top: -78px;
+        }
+        /*Fifth Row*/
+        .emotion img.star
+        {
+            margin-top: -106px;
+        }
+        .emotion img.clock
+        {
+            margin-left: -25px;
+            margin-top: -103px;
+        }
+        .emotion img.coffee
+        {
+            margin-left: -50px;
+            margin-top: -105px;
+        }
+        .emotion img.food
+        {
+            margin-left: -75px;
+            margin-top: -105px;
+        }
+        .emotion img.money
+        {
+            margin-left: -100px;
+            margin-top: -105px;
+        }
+        .emotion img.clapping_hands
+        {
+            margin-left: -125px;
+            margin-top: -105px;
+        }
+        .emotion img.fingers_crossed
+        {
+            margin-left: -150px;
+            margin-top: -105px;
+        }
+        .emotion img.snail
+        {
+            margin-left: -175px;
+            margin-top: -105px;
+        }
+        /*Sixth Row*/
+        .emotion img.rose
+        {
+            margin-top: -130px;
+        }
+        .emotion img.wilted_rose
+        {
+            margin-left: -25px;
+            margin-top: -130px;
+        }
+        .emotion img.play
+        {
+            margin-left: -50px;
+            margin-top: -130px;
+        }
+        .emotion img.idea
+        {
+            margin-left: -75px;
+            margin-top: -130px;
+        }
+        .emotion img.beer
+        {
+            margin-left: -100px;
+            margin-top: -130px;
+        }
+        .emotion img.phone
+        {
+            margin-left: -125px;
+            margin-top: -130px;
+        }
+        .emotion img.thumbs_up
+        {
+            margin-left: -150px;
+            margin-top: -130px;
+        }
+        .emotion img.thumbs_down
+        {
+            margin-left: -175px;
+            margin-top: -130px;
+        }
+        /*** End Emotions ***/
+        .chat_cmd
+        {
+            background-color: #F2F2F2;
+            padding: 5px;
+            position: relative;
+            clear: both;
+            margin-left: 15px;
+            width: 90%;
+        }
+        .chat_cmd div
+        {
+            padding-bottom: 8px;
+        }
+        .close_cmd
+        {
+            position: absolute;
+            right: 5px;
+            top: 0px;
+            cursor: pointer;
+        }
+        .previous_message
+        {
+            text-align: center;
+            clear: both;
+            float: left;
+            width: 100%;
+            padding: 5px 0px;
+        }
+        .previous_message span
+        {
+            background-color: #EAEAEA;
+            color: #555151;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 0px 4px 1px 4px;
+            position: absolute;
+            top: -3px;
+        }
+        .previous_message img
+        {
+            display: none;
+        }
+        .notify_container
+        {
+            float: left;
+            clear: both;
+            width: 100%;
+            padding: 10px 0px;
+        }
+        .notify
+        {
+            float: left;
+            padding: 5px 0px 5px 5px;
+            background-color: #C7EDFC;
+            color: Black;
+        }
+        .notify .nickname
+        {
+            color: #000000;
+        }
+        #greybk.notify_container, #whitebk.notify_container
+        {
+            padding-top: 0px;
+        }
+        #greybk.n_success, #whitebk.n_success
+        {
+            background-color: #dff0d8;
+        }
+        .n_primary, #greybk.n_primary, #whitebk.n_primary
+        {
+            background-color: #428bca;
+            color: #ffffff;
+        }
+        .n_primary .msg_time, #greybk.n_primary .msg_timeannounce, #whitebk.n_primary .msg_timeannounce
+        {
+            color: #cccccc;
+        }
+        .n_primary .msg_body, .n_primary .nickname, #greybk.n_primary .logfromnamea, #whitebk.n_primary .logfromnamea
+        {
+            color: #ffffff;
+        }
+        .n_primary .msg_body, .n_info .msg_body, .n_warning .msg_body, .n_danger .msg_body, .n_success .msg_body
+        {
+            margin-left: 0px;
+            padding-left: 0px;
+        }
+        .n_info, #greybk.n_info, #whitebk.n_info
+        {
+            background-color: #d9edf7;
+        }
+        .n_warning, #greybk.n_warning, #whitebk.n_warning
+        {
+            background-color: #fcf8e3;
+        }
+        .n_danger, #greybk.n_danger, #whitebk.n_danger
+        {
+            background-color: #f2dede;
+        }
+    </style>
+    <style>
+        .previous_message
+        {
+            text-align: center;
+            clear: both;
+            float: left;
+            width: 100%;
+            padding: 5px 0px;
+            position: relative;
+        }
+        .previous_message span
+        {
+            background-color: #EAEAEA;
+            color: #555151;
+            font-size: 12px;
+            cursor: pointer;
+            padding: 0px 4px 1px 4px;
+            position: absolute;
+        }
+        .previous_message img
+        {
+            display: none;
+        }
+        .meter-container
+        {
+            /*width:45%;*/
+            float: left;
+            display: none;
+            padding: 8px 5px 0px 5px;
+        }
+        .group-meter-container
+        {
+            padding-left: 10px;
+            display: none;
+            float: left;
+            padding-top: 5px;
+        }
+        .g_file
+        {
+            float: left;
+        }
+        .meter
+        {
+            float: left;
+            width: 60%;
+        }
+        
+        .meter-wrap
+        {
+            position: relative;
+        }
+        .meter-wrap, .meter-value, .meter-text
+        {
+            /* The width and height of your image */
+            width: 100px;
+            height: 8px;
+        }
+        .meter-wrap, .meter-value
+        {
+            background: #bdbdbd url('file:///C:/Users/Rajaguru/AppData/Roaming/Output Messenger/BCCAAA/Temp/meter-outline_new.png') top left no-repeat;
+        }
+        .meter-text
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding-top: 4px;
+            font-size: 12px;
+            color: #fff;
+            text-align: center;
+            display: none; /*width: 100%;*/
+        }
+        .meter-wrap
+        {
+            /*cursor: pointer;*/
+        }
+        .meter-value
+        {
+            background-color: rgb(77, 164, 243);
+            width: 0%;
+        }
+        .m_file
+        {
+            /*float:left;*/
+            padding-top: 2px;
+            padding-left: 20px;
+            display: none;
+            white-space: nowrap;
+            width: 60%;
+            float: left;
+        }
+        .pad_left
+        {
+            padding-left: 70px;
+        }
+        
+        .filename
+        {
+            float: left;
+            padding-left: 5px;
+            font-size: 12px;
+        }
+        .status, .r_status, .rc_status
+        {
+            color: Gray;
+            font-size: 12px;
+            display: inline;
+            padding-left: 5px;
+            white-space: normal;
+        }
+        .file_format
+        {
+            float: left;
+            padding-left: 5px;
+        }
+        .farrow
+        {
+            float: left;
+            padding-top: 3px;
+            width: 12px;
+            height: 12px;
+            cursor: pointer;
+        }
+        .sep_img
+        {
+            width: 100%;
+            height: 1px;
+            background-repeat: repeat-x;
+        }
+        .cancel_file, .accept, .openfile
+        {
+            /*width:20%;*/
+            padding: 4px 0px 0px 0px;
+            float: left;
+        }
+        .openfile
+        {
+            width: 40%;
+            display: none;
+            padding: 0px 0px 0px 5px;
+            font-size: 12px;
+        }
+        .openfile span
+        {
+            color: #0078ca;
+            cursor: pointer;
+            display: inline;
+        }
+        .openfile .fsep
+        {
+            color: Gray;
+            font-weight: bold;
+            cursor: default;
+            padding: 0px 5px;
+        }
+        .empty
+        {
+            font-size: 12px;
+            height: 3px;
+        }
+        .cancel_file img, .accept img, .openfile img
+        {
+            width: 46px;
+            height: 16px;
+        }
+        .show_folder
+        {
+            color: #0078ca;
+        }
+        .file
+        {
+            float: left;
+            padding-bottom: 10px;
+            width: 90%;
+        }
+        .small_file
+        {
+            float: left;
+            display: none;
+            padding: 3px 0px 0px 5px;
+        }
+        .small_file img
+        {
+            cursor: pointer;
+        }
+        .user_status
+        {
+            float: left;
+            padding: 5px 0px 0px 5px;
+        }
+        .chat_cmd
+        {
+            background-color: #F2F2F2;
+            padding: 5px;
+            position: relative;
+            clear: both;
+            margin-left: 15px;
+            width: 90%;
+        }
+        .chat_cmd div
+        {
+            padding-bottom: 8px;
+        }
+        .close_cmd
+        {
+            position: absolute;
+            right: 5px;
+            top: 0px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function mainfileprogress(gfkey) {
+            if (gfkey == '') return;
+            var divs = document.getElementsByClassName('c_' + gfkey);
+            var totwidth = 0;
+            var totfile = divs.length;
+            var fper = 0;
+            var par = document.getElementById(gfkey);
+
+            for (i = 0; i < divs.length; i++) {
+                if (divs[i].getElementsByClassName('meter-text').length > 0) {
+                    fper = parseInt(divs[i].getElementsByClassName('meter-text')[0].innerHTML.replace("%", ""));
+                    if (fper == -1) {
+                        totfile = totfile - 1;
+                    } else {
+                        totwidth = totwidth + fper;
+                    }
+                }
+            }
+
+            totwidth = Math.round(totwidth / totfile);
+            if (isNaN(totwidth)) {
+                totwidth = 0;
+            }
+            var meterex = document.getElementById('meter-ex_' + gfkey);
+            meterex.getElementsByClassName('meter-value')[0].style.width = totwidth + '%';
+            meterex.getElementsByClassName('meter-text')[0].innerHTML = totwidth + '%';
+
+            var groupmetercontainer = par.getElementsByClassName('group-meter-container')[0];
+            if (totfile == 0 || totwidth == 100) {
+                groupmetercontainer.style.display = 'none';
+            } else {
+                groupmetercontainer.style.display = 'block';
+            }
+            updatemainstatus(gfkey);
+        };
+        function fileprogress(h, perc, gfkey) {
+            var par = document.getElementById(h);
+
+            var meterex = document.getElementById('meter-ex_' + h);
+            meterex.getElementsByClassName('meter-value')[0].style.width = perc + '%';
+            meterex.getElementsByClassName('meter-text')[0].innerHTML = perc + '%';
+
+            par.getElementsByClassName('meter-container')[0].style.display = 'block';
+            if (gfkey != '') {
+                mainfileprogress(gfkey);
+            }
+            if (perc == 100) {
+                par.getElementsByClassName('status')[0].innerHTML = 'File Sent';
+                par.getElementsByClassName('sending')[0].style.display = 'none';
+            }
+        }
+        function updatemainstatus(gfkey) {
+            var completed = 0;
+            var pending = 0;
+            var inprogress = 0;
+            var cancelled = 0;
+            var divs = document.getElementsByClassName('c_' + gfkey);
+
+            for (i = 0; i < divs.length; i++) {
+                if (divs[i].getElementsByClassName('meter-text').length > 0) {
+                    switch (parseInt(divs[i].getElementsByClassName('meter-text')[0].innerHTML.replace("%", ""))) {
+                        case -1:
+                            cancelled = cancelled + 1;
+                            break;
+                        case 0:
+                            pending = pending + 1;
+                            break;
+                        case 100:
+                            completed = completed + 1;
+                            break;
+                        default:
+                            inprogress = inprogress + 1;
+                            break;
+                    }
+                }
+            }
+            var html = '';
+            if (completed > 0) {
+                html += completed + ' Completed; ';
+            }
+            if (cancelled > 0) {
+                html += cancelled + ' Cancelled; ';
+            }
+            if (inprogress > 0) {
+                html += inprogress + ' Inprogress; ';
+            }
+            if (pending > 0) {
+                html += pending + ' Pending; ';
+            }
+            document.getElementById('lbl' + gfkey).innerHTML = html;
+        }
+        var cancel = function () { window.event.returnValue = false; }
+
+        function handleDrop(ev) {
+            //alert(ev.datatransfer);
+            //window.external.OnDrop(ev);
+        }
+        function acceptfile(h) {
+            var par = document.getElementById(h);
+            getElementsByClassName(par, 'status')[0].innerHTML = 'Receiving';
+            getElementsByClassName(par, 'accept')[0].style.display = 'none';
+        }
+        function filereceived(h) {
+            var par = document.getElementById(h);
+
+            par.getElementsByClassName('receiving')[0].style.display = 'none';
+            par.getElementsByClassName('received')[0].style.display = 'block';
+            par.getElementsByClassName('openfile')[0].style.display = 'block';
+        }
+        function cancelreceivingfile(h) {
+            var par = document.getElementById(h);
+
+            par.getElementsByClassName('cancelled')[0].style.display = 'block';
+            par.getElementsByClassName('receiving')[0].style.display = 'none';
+        }
+        function sentfile(h, gkey) {
+            var par = document.getElementById(h);
+
+            par.getElementsByClassName('status')[0].innerHTML = 'File Sent';
+            par.getElementsByClassName('sending')[0].style.display = 'none';
+            par.getElementsByClassName('meter-text')[0].innerHTML = '100%';
+            mainfileprogress(gkey);
+        }
+        function cancelsendingfile(h, gkey) {
+            var par = document.getElementById(h);
+            alert(par);
+            par.getElementsByClassName('status')[0].innerHTML = 'Cancelled';
+            par.getElementsByClassName('sending')[0].style.display = 'none';
+            par.getElementsByClassName('meter-text')[0].innerHTML = '-1';
+            mainfileprogress(gkey);
+        }
+        function showfileslist(k) {
+            //var par = document.getElementById(k);
+            var rootpar = document.getElementById(k);
+            var par = getElementsByClassName(document, 'meter_' + k)[0];
+            var img = getChildElementById(par, "img", "imgfilearrow");
+            var divs = getElementsByClassName(document, 'c_' + k);
+            var simgdiv = getElementsByClassName(rootpar, 'small_file')[0];
+            var totu = divs.length;
+            var totw = 0;
+            if (parseInt(img.getAttribute("arrow")) == 0) {
+                img.setAttribute("arrow", "1");
+
+                if (simgdiv) {
+                    totw = par.clientHeight;
+                    for (i = 0; i < totu; i++) {
+                        divs[i].style.display = 'block';
+                        totw += divs[i].clientHeight;
+                    }
+                    if (totw < simgdiv.clientHeight) {
+                        totw = simgdiv.clientHeight
+                    }
+                    rootpar.style.height = totw;
+                } else {
+                    for (i = 0; i < totu; i++) {
+                        divs[i].style.display = 'block';
+                    }
+                }
+                window.scroll(0, findPos(divs[0]));
+            }
+            else {
+                if (simgdiv) {
+                    rootpar.style.height = simgdiv.clientHeight;
+                }
+                img.setAttribute("arrow", "0");
+                for (i = 0; i < divs.length; i++) {
+                    divs[i].style.display = 'none';
+                }
+            }
+        }
+        function getChildElementById(pobj, nodename, cid) {
+            var children = pobj.getElementsByTagName(nodename); // any tag could be used here..
+            for (var i = 0; i < children.length; i++) {
+                if (children[i].getAttribute('id') == cid) // any attribute could be used here
+                {
+                    return children[i];
+                }
+            }
+        }
+        function getElementsByClassName(node, classname) {
+            var a = [];
+            var re = new RegExp('(^| )' + classname + '( |$)');
+            var els = node.getElementsByTagName("*");
+            for (var i = 0, j = els.length; i < j; i++)
+                if (re.test(els[i].className)) a.push(els[i]);
+            return a;
+        }
+        function findPos(obj) {
+            var curtop = 0;
+            if (obj.offsetParent) {
+                do {
+                    curtop += obj.offsetTop;
+                } while (obj = obj.offsetParent);
+                return [curtop];
+            }
+        }
+        function closechatcommand(that) {
+            that.parentNode.parentNode.removeChild(that.parentNode);
+        }
+    </script>
+    <script>
+        function showfilename(that) {
+            var sendingobj = getElementsByClassName(that, 'sending')[0];
+            if (sendingobj) {
+                if (sendingobj.style.display == 'block') return;
+            }
+            if (getElementsByClassName(that, 'small_file')[0].style.display != 'block') return;
+            getElementsByClassName(that, 'filename')[0].style.display = 'block';
+        }
+        function hidefilename(that) {
+            var sendingobj = getElementsByClassName(that, 'sending')[0];
+            if (sendingobj) {
+                if (sendingobj.style.display == 'block') return;
+            }
+            if (getElementsByClassName(that, 'small_file')[0].style.display != 'block') return;
+            getElementsByClassName(that, 'filename')[0].style.display = 'none';
+        }
+        function showopenfolder(that) {
+            if (getElementsByClassName(that, 'small_file')[0].style.display != 'block') return;
+            getElementsByClassName(that, 'filename')[0].style.display = 'block';
+            getElementsByClassName(that, 'openfile')[0].style.display = 'block';
+        }
+        function hideopenfolder(that) {
+            if (getElementsByClassName(that, 'small_file')[0].style.display != 'block') return;
+            getElementsByClassName(that, 'filename')[0].style.display = 'none';
+            getElementsByClassName(that, 'openfile')[0].style.display = 'none';
+        }
+    </script>
+    <script>
+        var TEMP_PATH = 'file:///C:/Users/Rajaguru/AppData/Roaming/Output%20Messenger/CAAA/Temp';
+        function openinnewtab(url) {
+            if (url.indexOf("http://") == -1) {
+                if (url.indexOf("https://") == -1) {
+                    url = "http://" + url;
+                }
+            }
+            // window.open(url);
+
+            // url= url.replace("https://",""); 
+            window.external.OpenURL(url);
+
+        }
+        function openurl(url) {
+            window.external.OpenPath(url);
+        }
+        function appendhtml(str) {
+            var div = document.createElement('div');
+            div.innerHTML = str;
+            while (div.children.length > 0) {
+                document.body.appendChild(div.children[0]);
+            }
+        }
+        function closechatcommand(that) {
+            that.parentNode.parentNode.removeChild(that.parentNode);
+        }
+        function showprevmsg(lastmessageid) {
+            var par = document.getElementById(lastmessageid);
+            getElementsByClassName(par, 'load')[0].style.display = 'none';
+            getElementsByClassName(par, 'info')[0].style.display = '';
+        }
+        function showprevmsgloader(lastmessageid) {
+            var par = document.getElementById(lastmessageid);
+            getElementsByClassName(par, 'load')[0].style.display = 'block';
+            getElementsByClassName(par, 'info')[0].style.display = 'none';
+        }
+        function hideprevmsgloader(lastmessageid) {
+            var par = document.getElementById(lastmessageid);
+            getElementsByClassName(par, 'load')[0].style.display = 'none';
+            getElementsByClassName(par, 'info')[0].style.display = 'none';
+        }
+        function errorimage(that, filename) {
+            var filepath = TEMP_PATH + '/' + filename;
+            that.src = filepath;
+            that.style.width = 'auto';
+            that.style.height = 'auto';
+        }
+    </script>
+</head>
+<body>
+    <span class="currentusernickname" dt="10:43 AM">Rajaguru Says: </span>
+    <div class="msg_time">
+        10:43 AM</div>
+    <br>
+    <div class="bullet" id="b_X4JHFG" style="height: 12pt">
+        <img class="server-delivered" title="" src="file:///C:/Users/Rajaguru/AppData/Roaming/Output%20Messenger/EFAAA/Temp/bullets8.png"></div>
+    <div class="msg_body" id="c_X4JHFG" style="font-size: 10pt; color: #000080; font-family: Segoe UI"
+        un="Rajaguru" tm="10:43 AM">
+        d</div>
+    <br>
+    <span class="currentusernickname" dt="10:44 AM">Rajaguru Says: </span>
+    <div class="msg_time">
+        10:44 AM</div>
+    <br>
+    <div class="bullet" id="b_06534f11b81b22e44a54812e107f2e0976387c6d">
+        <img class="server-delivered" title="" src="file:///C:/Users/Rajaguru/AppData/Roaming/Output%20Messenger/EFAAA/Temp/bullets8.png"></div>
+    <div class="file " id="06534f11b81b22e44a54812e107f2e0976387c6d" onmouseover="showfilename(this)"
+        onmouseout="hidefilename(this)">
+        <div class="file_format">
+            <img onclick="window.external.OpenReceivedFile('file:///E:/repo/om/Client/branches/OMOutput/OMOutput/bin/Js/jquery_002.js')"
+                alt="jquery_002.js" src="file:///C:/Users/Rajaguru/AppData/Roaming/Output%20Messenger/EFAAA/Temp/js.png"
+                align="absMiddle"></div>
+        <div class="filename">
+            jquery_002.js<span class="filesize" style="display: inline">243.3 KB</span>
+            <div class="status">
+            </div>
+            <div class="sending" style="display: none">
+                <div class="meter-container" style="display: block">
+                    <div class="meter-wrap" id="meter-ex_06534f11b81b22e44a54812e107f2e0976387c6d">
+                        <div class="meter-value" style="width: 100%">
+                            <div class="meter-text">
+                                100%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cancel_file">
+                    <img style="width: 46px; height: 16px" onclick="javascript:cancelsendingfile('06534f11b81b22e44a54812e107f2e0976387c6d');window.external.CancelSendingFile('06534f11b81b22e44a54812e107f2e0976387c6d')"
+                        alt="Cancel" src="file:///C:/Users/Rajaguru/AppData/Roaming/Output%20Messenger/EFAAA/Temp/cancel.gif"
+                        align="left" border="0">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sep">
+    </div>
+</body>
+</html>
